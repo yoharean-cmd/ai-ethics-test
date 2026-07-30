@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ethics Dilemma - 인공지능 윤리 딜레마 체감 플랫폼</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .page-transition {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .hidden-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .visible-section {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-morphism {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .option-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .option-card:hover {
+            transform: scale(1.02);
+        }
+
+        .option-selected {
+            border: 3px solid #8b5cf6 !important; /* Violet 500 */
+            background: rgba(139, 92, 246, 0.2) !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Container -->
+    <main id="app-container" class="w-full max-w-2xl mx-auto">
+        
+        <!-- 1. Main Page Screen -->
+        <section id="screen-main" class="page-transition visible-section text-center py-12 px-6 glass-morphism rounded-3xl shadow-2xl">
+            <div class="mb-8 inline-block p-4 bg-violet-600 rounded-2xl shadow-lg shadow-violet-500/30">
+                <i class="fa-solid fa-brain text-5xl text-white"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold mb-4 tracking-tight">AI 윤리 딜레마 플랫폼</h1>
+            <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                정답이 없는 선택의 기로에서 당신은 어떤 결정을 내리시겠습니까?<br>
+                인공지능 시대를 살아가는 우리의 가치관을 탐구해 보세요.
+            </p>
+            <button onclick="navigateTo('screen-user-info')" class="w-full sm:w-auto bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 px-12 rounded-xl text-xl transition-all shadow-lg shadow-violet-600/20 active:scale-95">
+                입장하기 <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+        </section>
+
+        <!-- 2. User Demographics Screen -->
+        <section id="screen-user-info" class="page-transition hidden-section glass-morphism rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fa-solid fa-user-tag mr-3 text-violet-400"></i> 기본 정보 입력
+            </h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">성별</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button type="button" onclick="selectDemo('gender', 'male', this)" class="demo-btn bg-slate-800 border border-slate-700 py-3 rounded-lg hover:bg-slate-700 transition">남성</button>
+                        <button type="button" onclick="selectDemo('gender', 'female', this)" class="demo-btn bg-slate-800 border border-slate-700 py-3 rounded-lg hover:bg-slate-700 transition">여성</button>
+                        <button type="button" onclick="selectDemo('gender', 'other', this)" class="demo-btn bg-slate-800 border border-slate-700 py-3 rounded-lg hover:bg-slate-700 transition">기타</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">연령대</label>
+                    <select id="age-group" class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg outline-none focus:border-violet-500">
+                        <option value="">선택해주세요</option>
+                        <option value="10">10대 미만</option>
+                        <option value="10s">10대</option>
+                        <option value="20s">20대</option>
+                        <option value="30s">30대</option>
+                        <option value="40s">40대</option>
+                        <option value="50s">50대</option>
+                        <option value="60s">60대 이상</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">소속/신분</label>
+                    <select id="affiliation" class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg outline-none focus:border-violet-500">
+                        <option value="">선택해주세요</option>
+                        <option value="elem">초등학생</option>
+                        <option value="mid">중학생</option>
+                        <option value="high">고등학생</option>
+                        <option value="univ">대학생</option>
+                        <option value="general">일반인</option>
+                        <option value="etc">기타</option>
+                    </select>
+                </div>
+                <button onclick="startDilemma()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-lg shadow-emerald-600/20">
+                    딜레마 탐구 시작하기
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Dilemma Interaction Screen -->
+        <section id="screen-dilemma" class="page-transition hidden-section w-full">
+            <!-- Progress Bar -->
+            <div class="mb-6">
+                <div class="flex justify-between text-sm text-slate-400 mb-2">
+                    <span id="q-count">Question 1 of 5</span>
+                    <span id="q-percent">20%</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2">
+                    <div id="progress-bar" class="bg-violet-500 h-2 rounded-full transition-all duration-500" style="width: 20%"></div>
+                </div>
+            </div>
+
+            <!-- Content Card -->
+            <div class="glass-morphism rounded-3xl p-6 md:p-8 shadow-2xl mb-6">
+                <div id="dilemma-category" class="inline-block px-3 py-1 rounded-full bg-violet-900/50 text-violet-300 text-xs font-bold mb-4 uppercase tracking-widest">Autonomous Driving</div>
+                <h2 id="dilemma-title" class="text-2xl font-bold mb-4">자율주행 자동차의 선택</h2>
+                <p id="dilemma-desc" class="text-slate-300 leading-relaxed mb-8">
+                    브레이크가 고장 난 자율주행 차량이 직진하면 5명의 무단횡단 보행자를 치게 됩니다. 방향을 틀면 벽에 부딪혀 탑승자가 사망합니다. AI는 누구를 보호하도록 설계되어야 합니까?
+                </p>
+
+                <!-- Choices -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <button id="btn-opt-a" onclick="selectOption('A')" class="option-card flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-800/50 border-2 border-slate-700 text-center hover:border-slate-500">
+                        <span class="text-slate-400 text-xs mb-2">선택 A</span>
+                        <span id="text-opt-a" class="font-bold text-lg">탑승자 보호</span>
+                    </button>
+                    <button id="btn-opt-b" onclick="selectOption('B')" class="option-card flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-800/50 border-2 border-slate-700 text-center hover:border-slate-500">
+                        <span class="text-slate-400 text-xs mb-2">선택 B</span>
+                        <span id="text-opt-b" class="font-bold text-lg">보행자(다수) 보호</span>
+                    </button>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-slate-400 mb-2 italic">나의 생각 (선택 사항)</label>
+                    <textarea id="reasoning" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 focus:border-violet-500 outline-none transition" placeholder="이 선택을 내린 이유를 짧게 적어주세요..."></textarea>
+                </div>
+
+                <button id="next-btn" onclick="nextQuestion()" class="w-full bg-slate-700 text-slate-300 font-bold py-4 rounded-xl text-lg transition-all cursor-not-allowed" disabled>
+                    답변을 선택해주세요
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. Result Screen -->
+        <section id="screen-result" class="page-transition hidden-section glass-morphism rounded-3xl p-8 shadow-2xl">
+            <div class="text-center mb-10">
+                <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/30">
+                    <i class="fa-solid fa-check text-3xl text-white"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-2">분석 완료</h2>
+                <p class="text-slate-400">당신의 가치관과 사회의 목소리를 비교해 드립니다.</p>
+            </div>
+
+            <div id="stats-container" class="space-y-12">
+                <!-- Dynamic charts will be injected here -->
+            </div>
+
+            <div class="mt-12 flex flex-col sm:flex-row gap-4">
+                <button onclick="location.reload()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition">
+                    다시 하기
+                </button>
+                <button onclick="alert('결과가 클립보드에 복사되었습니다!')" class="flex-1 bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-violet-600/20 transition">
+                    결과 공유하기
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-slate-500 text-sm">
+        &copy; 2024 AI Ethics Lab. All Rights Reserved.
+    </footer>
+
+    <script>
+        // --- DATA & STATE ---
+        const dilemmas = [
+            {
+                id: 1,
+                category: "자율주행 (Autonomous)",
+                title: "자율주행 자동차의 판단",
+                desc: "브레이크가 고장 난 자율주행 차량이 직진하면 5명의 무단횡단 보행자를 치게 됩니다. 핸들을 꺾으면 벽에 부딪혀 탑승자가 사망합니다. AI는 누구를 보호해야 할까요?",
+                optA: "차량 탑승자 보호",
+                optB: "다수의 보행자 보호",
+                seedData: [35, 65] // Initial realistic percentages [A, B]
+            },
+            {
+                id: 2,
+                category: "AI 채용 (HR Bias)",
+                title: "AI 면접관의 효율성",
+                desc: "회사에서 AI 면접관을 도입했습니다. AI는 성과가 높은 직원의 특징(남성 위주 데이터)을 바탕으로 남성 지원자를 선호하는 경향을 보입니다. 어떻게 처리해야 할까요?",
+                optA: "효율성 중시 (AI 결과 수용)",
+                optB: "공정성 중시 (인위적 보정 도입)",
+                seedData: [20, 80]
+            },
+            {
+                id: 3,
+                category: "의료 AI (Medical)",
+                title: "수술 결정권",
+                desc: "생존 확률이 20%인 고위험 수술 상황입니다. AI 의료진은 '수술 불가'를 권고하고, 인간 의사는 '가능성 있음'을 주장합니다. 최종 결정은 누구의 판단을 따라야 할까요?",
+                optA: "데이터 기반의 AI 권고",
+                optB: "직관 기반의 인간 의사",
+                seedData: [45, 55]
+            },
+            {
+                id: 4,
+                category: "창작 저작권 (Art & Copyright)",
+                title: "AI 생성 예술의 가치",
+                desc: "AI가 수만 장의 유명 화가 그림을 학습하여 그린 작품이 공모전 1위를 했습니다. 이 작품에 상을 주는 것이 옳을까요?",
+                optA: "창작 도구로서 인정 및 수상",
+                optB: "인간의 노력이 결여되었으므로 무효",
+                seedData: [40, 60]
+            },
+            {
+                id: 5,
+                category: "사회 안전 (Privacy vs Safety)",
+                title: "딥페이크 탐지와 사생활",
+                desc: "범죄 예방을 위해 모든 개인 통신망에서 AI가 실시간으로 딥페이크 및 음란물을 자동 검열하는 시스템을 도입하려 합니다. 국가 보안을 위해 사생활 침해를 감수해야 할까요?",
+                optA: "사회 안전을 위한 자동 검열 찬성",
+                optB: "개인 사생활 보호를 위한 반대",
+                seedData: [30, 70]
+            }
+        ];
+
+        let state = {
+            step: 'main',
+            userData: {
+                gender: '',
+                ageGroup: '',
+                affiliation: ''
+            },
+            answers: [], // Stores { id, choice, reasoning }
+            currentIdx: 0,
+            selectedTempChoice: null
+        };
+
+        // --- NAVIGATION & UI HELPERS ---
+        function navigateTo(targetId) {
+            document.querySelectorAll('section').forEach(sec => {
+                sec.classList.remove('visible-section');
+                sec.classList.add('hidden-section');
+            });
+            const target = document.getElementById(targetId);
+            target.classList.remove('hidden-section');
+            setTimeout(() => target.classList.add('visible-section'), 50);
+        }
+
+        function selectDemo(type, value, btn) {
+            state.userData[type] = value;
+            // Clear siblings and highlight current
+            btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('border-violet-500', 'bg-violet-900/30'));
+            btn.classList.add('border-violet-500', 'bg-violet-900/30');
+        }
+
+        function startDilemma() {
+            state.userData.ageGroup = document.getElementById('age-group').value;
+            state.userData.affiliation = document.getElementById('affiliation').value;
+
+            if (!state.userData.gender || !state.userData.ageGroup || !state.userData.affiliation) {
+                alert('모든 정보를 입력해주세요!');
+                return;
+            }
+            renderQuestion();
+            navigateTo('screen-dilemma');
+        }
+
+        function renderQuestion() {
+            const q = dilemmas[state.currentIdx];
+            document.getElementById('q-count').innerText = `Question ${state.currentIdx + 1} of ${dilemmas.length}`;
+            const pct = ((state.currentIdx + 1) / dilemmas.length) * 100;
+            document.getElementById('q-percent').innerText = `${Math.round(pct)}%`;
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+
+            document.getElementById('dilemma-category').innerText = q.category;
+            document.getElementById('dilemma-title').innerText = q.title;
+            document.getElementById('dilemma-desc').innerText = q.desc;
+            document.getElementById('text-opt-a').innerText = q.optA;
+            document.getElementById('text-opt-b').innerText = q.optB;
+
+            // Reset UI
+            document.getElementById('btn-opt-a').classList.remove('option-selected');
+            document.getElementById('btn-opt-b').classList.remove('option-selected');
+            document.getElementById('reasoning').value = '';
+            state.selectedTempChoice = null;
+            
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = true;
+            nextBtn.classList.replace('bg-violet-600', 'bg-slate-700');
+            nextBtn.classList.replace('text-white', 'text-slate-300');
+            nextBtn.innerText = "답변을 선택해주세요";
+        }
+
+        function selectOption(choice) {
+            state.selectedTempChoice = choice;
+            document.getElementById('btn-opt-a').classList.toggle('option-selected', choice === 'A');
+            document.getElementById('btn-opt-b').classList.toggle('option-selected', choice === 'B');
+            
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.replace('bg-slate-700', 'bg-violet-600');
+            nextBtn.classList.replace('text-slate-300', 'text-white');
+            nextBtn.innerText = state.currentIdx === dilemmas.length - 1 ? "최종 결과 확인하기" : "다음 문제로";
+        }
+
+        function nextQuestion() {
+            // Save answer
+            state.answers.push({
+                id: dilemmas[state.currentIdx].id,
+                choice: state.selectedTempChoice,
+                reasoning: document.getElementById('reasoning').value
+            });
+
+            if (state.currentIdx < dilemmas.length - 1) {
+                state.currentIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            navigateTo('screen-result');
+            const container = document.getElementById('stats-container');
+            container.innerHTML = '';
+
+            dilemmas.forEach((d, idx) => {
+                const userChoice = state.answers[idx].choice;
+                const userReason = state.answers[idx].reasoning;
+                
+                // Construct result card
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/50 p-6 rounded-2xl border border-slate-700 shadow-inner";
+                
+                // Add title and user's answer
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-violet-300 mb-1">${idx+1}. ${d.title}</h3>
+                            <p class="text-sm text-slate-500">${d.category}</p>
+                        </div>
+                        <div class="px-3 py-1 bg-violet-600/20 border border-violet-500/50 rounded-lg text-violet-300 text-sm font-bold">
+                            나의 선택: ${userChoice === 'A' ? d.optA : d.optB}
+                        </div>
+                    </div>
+                    ${userReason ? `<div class="mb-6 p-3 bg-slate-900 rounded-lg border-l-4 border-violet-500 text-sm italic text-slate-400">"${userReason}"</div>` : ''}
+                    <div class="relative h-48 w-full">
+                        <canvas id="chart-${d.id}"></canvas>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Initialize Chart
+                const ctx = document.getElementById(`chart-${d.id}`).getContext('2d');
+                
+                // Adjust seed data with current user vote slightly for simulation
+                let [valA, valB] = d.seedData;
+                if (userChoice === 'A') valA += 2; else valB += 2;
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [d.optA, d.optB],
+                        datasets: [{
+                            label: '참여자 선택 비율 (%)',
+                            data: [valA, valB],
+                            backgroundColor: [
+                                userChoice === 'A' ? '#8b5cf6' : '#334155',
+                                userChoice === 'B' ? '#8b5cf6' : '#334155'
+                            ],
+                            borderRadius: 10,
+                            barThickness: 40
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: '#64748b' },
+                                max: 100
+                            },
+                            y: {
+                                grid: { display: false },
+                                ticks: { 
+                                    color: '#f1f5f9',
+                                    font: { weight: 'bold' }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
