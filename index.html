@@ -3,80 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 윤리 플랫폼</title>
+    <title>AI 윤리 가치 측정 플랫폼</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #0f172a; color: #f1f5f9; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #0f172a; color: #f1f5f9; overflow-x: hidden; }
         .glass-morphism { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hidden-section { display: none; }
-        .option-selected { border: 2px solid #8b5cf6 !important; background: rgba(139, 92, 246, 0.2) !important; }
+        .page-transition { transition: all 0.5s ease-in-out; }
+        .hidden-section { display: none; opacity: 0; transform: translateY(30px); }
+        .visible-section { display: block; opacity: 1; transform: translateY(0); }
+        .option-card { transition: all 0.2s ease; border: 2px solid transparent; cursor: pointer; }
+        .option-selected { border-color: #8b5cf6 !important; background: rgba(139, 92, 246, 0.2) !important; box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
 
-    <main class="w-full max-w-4xl mx-auto">
-        <!-- 메인 페이지 -->
-        <section id="screen-main" class="text-center py-16 px-8 glass-morphism rounded-3xl shadow-2xl">
+    <main id="app-container" class="w-full max-w-4xl mx-auto">
+        
+        <!-- 1. 메인 페이지 -->
+        <section id="screen-main" class="page-transition visible-section text-center py-16 px-8 glass-morphism rounded-3xl shadow-2xl">
+            <div class="mb-8 inline-block p-5 bg-violet-600 rounded-3xl shadow-lg shadow-violet-500/40">
+                <i class="fa-solid fa-brain text-6xl text-white"></i>
+            </div>
             <h1 class="text-4xl font-extrabold mb-6">AI 윤리 데이터 분석 플랫폼</h1>
-            <button onclick="navigateTo('screen-user-info')" class="bg-violet-600 hover:bg-violet-500 text-white font-bold py-5 px-16 rounded-2xl text-xl">입장하기</button>
+            <p class="text-slate-400 text-lg mb-12 leading-relaxed">
+                당신의 선택은 미래 인공지능이 추구할 가치를 결정하는 소중한 데이터가 됩니다.<br>
+                5가지 시나리오를 통해 사회적 최적해를 함께 찾아주세요.
+            </p>
+            <button onclick="navigateTo('screen-user-info')" class="w-full sm:w-auto bg-violet-600 hover:bg-violet-500 text-white font-bold py-5 px-16 rounded-2xl text-xl shadow-xl active:scale-95">
+                분석 시작하기
+            </button>
         </section>
 
-        <!-- 정보 입력 페이지 -->
-        <section id="screen-user-info" class="hidden-section glass-morphism rounded-3xl p-10 shadow-2xl">
-            <h2 class="text-2xl font-bold mb-8 text-violet-400">분석 그룹 분류</h2>
+        <!-- 2. 개인정보 입력 페이지 -->
+        <section id="screen-user-info" class="page-transition hidden-section glass-morphism rounded-3xl p-10 shadow-2xl">
+            <h2 class="text-3xl font-bold mb-8 text-violet-400 italic">그룹 분류</h2>
             <div class="space-y-8">
                 <div>
-                    <p class="text-sm text-slate-400 mb-3">성별 (클릭하여 선택)</p>
+                    <label class="block text-sm font-semibold text-slate-400 mb-3">성별 (클릭하여 선택)</label>
                     <div class="grid grid-cols-3 gap-4">
-                        <button onclick="selectDemo('gender', '남성', this)" class="demo-btn bg-slate-800 p-4 rounded-xl border border-slate-700">남성</button>
-                        <button onclick="selectDemo('gender', '여성', this)" class="demo-btn bg-slate-800 p-4 rounded-xl border border-slate-700">여성</button>
-                        <button onclick="selectDemo('gender', '기타', this)" class="demo-btn bg-slate-800 p-4 rounded-xl border border-slate-700">기타</button>
+                        <button onclick="selectDemo('gender', '남성', this)" class="demo-btn bg-slate-800 p-4 rounded-xl border border-slate-700 hover:bg-slate-700 transition">남성</button>
+                        <button onclick="selectDemo('gender', '여성', this)" class="demo-btn bg-slate-800 p-4 rounded-xl border border-slate-700 hover:bg-slate-700 transition">여성</button>
+                        <button onclick="selectDemo('gender', '기타', this)" class="demo-btn bg-slate-800 p-4 rounded-xl border border-slate-700 hover:bg-slate-700 transition">기타</button>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <select id="age-group" class="bg-slate-800 border border-slate-700 p-4 rounded-xl text-white"><option value="">연령대 선택</option><option value="10대">10대</option><option value="20대">20대</option><option value="30대">30대</option></select>
-                    <select id="affiliation" class="bg-slate-800 border border-slate-700 p-4 rounded-xl text-white"><option value="">학교급 선택</option><option value="초등학생">초등학생</option><option value="중학생">중학생</option><option value="고등학생">고등학생</option><option value="일반인">일반인</option></select>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-400 mb-3">연령대</label>
+                        <select id="age-group" class="w-full bg-slate-800 border border-slate-700 p-4 rounded-xl outline-none focus:border-violet-500">
+                            <option value="">선택하세요</option>
+                            <option value="10대 미만">10대 미만</option>
+                            <option value="10대">10대</option>
+                            <option value="20대">20대</option>
+                            <option value="30대 이상">30대 이상</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-400 mb-3">학교급/신분</label>
+                        <select id="affiliation" class="w-full bg-slate-800 border border-slate-700 p-4 rounded-xl outline-none focus:border-violet-500">
+                            <option value="">선택하세요</option>
+                            <option value="초등학생">초등학생</option>
+                            <option value="중학생">중학생</option>
+                            <option value="고등학생">고등학생</option>
+                            <option value="일반인">일반인</option>
+                        </select>
+                    </div>
                 </div>
-                <button onclick="startDilemma()" class="w-full bg-emerald-600 font-bold py-5 rounded-2xl text-xl">실험 입장하기</button>
+                <button onclick="startDilemma()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-5 rounded-2xl text-xl shadow-lg">
+                    실험 입장하기
+                </button>
             </div>
         </section>
 
-        <!-- 딜레마 페이지 (간략화) -->
-        <section id="screen-dilemma" class="hidden-section glass-morphism rounded-3xl p-10 shadow-2xl text-center">
-            <h2 id="d-title" class="text-2xl font-bold mb-4">시나리오 진행 중</h2>
-            <p id="d-desc" class="mb-10 text-slate-300">내용...</p>
-            <div class="grid gap-4">
-                <button onclick="selectOption('A')" id="btn-a" class="bg-slate-800 p-6 rounded-xl border border-slate-700">옵션 A</button>
-                <button onclick="selectOption('B')" id="btn-b" class="bg-slate-800 p-6 rounded-xl border border-slate-700">옵션 B</button>
+        <!-- 3. 딜레마 페이지 (상세 시나리오 + 서술형) -->
+        <section id="screen-dilemma" class="page-transition hidden-section w-full">
+            <div class="mb-6 flex justify-between items-center px-2">
+                <span id="q-count" class="text-violet-400 font-bold tracking-widest uppercase">Question 1 / 5</span>
+                <div class="w-1/2 bg-slate-800 rounded-full h-2">
+                    <div id="progress-bar" class="bg-violet-500 h-full transition-all duration-700" style="width: 20%"></div>
+                </div>
             </div>
-            <button id="next-btn" onclick="nextQuestion()" class="w-full mt-10 bg-violet-600 py-4 rounded-xl opacity-50" disabled>답변을 선택하세요</button>
+
+            <div class="glass-morphism rounded-3xl p-8 md:p-10 shadow-2xl mb-8">
+                <h2 id="dilemma-title" class="text-2xl font-bold mb-6 italic">질문 제목</h2>
+                <div class="bg-slate-900/50 p-6 rounded-2xl mb-8 border-l-4 border-violet-500">
+                    <p id="dilemma-desc" class="text-slate-300 leading-relaxed text-lg whitespace-pre-wrap">시나리오 내용</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <button id="btn-opt-a" onclick="selectOption('A')" class="option-card bg-slate-800 p-6 rounded-2xl text-center hover:bg-slate-700">
+                        <span id="text-opt-a" class="font-bold">옵션 A</span>
+                    </button>
+                    <button id="btn-opt-b" onclick="selectOption('B')" class="option-card bg-slate-800 p-6 rounded-2xl text-center hover:bg-slate-700">
+                        <span id="text-opt-b" class="font-bold">옵션 B</span>
+                    </button>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-sm font-semibold text-slate-500 mb-3">위의 선택을 내린 이유를 서술해 주세요 (필수)</label>
+                    <textarea id="reasoning" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 focus:border-violet-500 outline-none transition" placeholder="당신의 논리적 근거는 통계 분석에 매우 중요합니다."></textarea>
+                </div>
+
+                <button id="next-btn" onclick="nextQuestion()" class="w-full bg-slate-700 text-slate-400 font-bold py-5 rounded-2xl text-xl" disabled>
+                    답변과 이유를 입력해 주세요
+                </button>
+            </div>
         </section>
+
+        <!-- 4. 결과 통계 페이지 (다차원 필터) -->
+        <section id="screen-result" class="page-transition hidden-section glass-morphism rounded-3xl p-10 shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-8">실시간 가치관 통계 분석</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 bg-slate-900/60 p-6 rounded-2xl border border-slate-700">
+                <select id="filter-gender" onchange="applyFilters()" class="bg-slate-800 p-3 rounded-xl text-sm outline-none border border-slate-700">
+                    <option value="all">전체 성별</option><option value="남성">남성</option><option value="여성">여성</option>
+                </select>
+                <select id="filter-age" onchange="applyFilters()" class="bg-slate-800 p-3 rounded-xl text-sm outline-none border border-slate-700">
+                    <option value="all">전체 연령</option><option value="10대 미만">10대 미만</option><option value="10대">10대</option><option value="20대">20대</option><option value="30대 이상">30대 이상</option>
+                </select>
+                <select id="filter-affi" onchange="applyFilters()" class="bg-slate-800 p-3 rounded-xl text-sm outline-none border border-slate-700">
+                    <option value="all">전체 신분</option><option value="초등학생">초등학생</option><option value="중학생">중학생</option><option value="고등학생">고등학생</option><option value="일반인">일반인</option>
+                </select>
+            </div>
+
+            <div id="stats-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            
+            <div class="mt-12 text-center">
+                <button onclick="location.reload()" class="bg-violet-600 px-12 py-4 rounded-xl font-bold shadow-lg">재참여하기</button>
+            </div>
+        </section>
+
     </main>
 
     <script>
-        // --- 중요: Supabase 연동 시도 (실패해도 앱이 멈추지 않게 처리) ---
-        let supabaseClient = null;
-        try {
-            const SB_URL = "YOUR_SUPABASE_URL"; // 실제 URL로 교체 필요
-            const SB_KEY = "YOUR_SUPABASE_ANON_KEY"; // 실제 Key로 교체 필요
-            if(SB_URL.startsWith("http")) {
-                supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-            }
-        } catch(e) { console.error("Supabase 초기화 실패:", e); }
+        // Supabase 연동 (본인의 정보를 입력하세요)
+        const SB_URL = "YOUR_SUPABASE_URL";
+        const SB_KEY = "YOUR_SUPABASE_ANON_KEY";
+        const supabaseClient = (SB_URL.startsWith("http")) ? supabase.createClient(SB_URL, SB_KEY) : null;
 
-        let state = { userData: {}, answers: [], currentIdx: 0, selectedChoice: null };
-        const questions = [
-            { title: "자율주행 사고", desc: "보행자를 칠 것인가 탑승자가 희생할 것인가?", optA: "보행자 보호", optB: "탑승자 보호" },
-            { title: "AI 감시", desc: "안전을 위해 모든 대화를 AI가 기록해도 될까요?", optA: "찬성", optB: "반대" }
+        const dilemmas = [
+            {
+                title: "자율주행차의 불가피한 충돌",
+                desc: "당신은 고속도로를 주행 중인 자율주행차의 탑승자입니다. 브레이크가 파손된 상황에서 앞에는 무단횡단 중인 보행자 5명이 있습니다. 핸들을 꺾으면 벽에 부딪혀 탑승자인 당신이 사망합니다. AI는 누구를 보호해야 할까요?",
+                optA: "보행자 5명 보호 (탑승자 희생)",
+                optB: "탑승자 1명 보호 (보행자 희생)"
+            },
+            {
+                title: "사회 안전을 위한 상시 음성 감시",
+                desc: "범죄 예방 및 응급상황 포착을 위해 모든 가정에 AI 음성 분석 장치를 의무화하려 합니다. 실제로 수천 명의 생명을 구할 수 있지만, 모든 사적 대화가 텍스트화되어 데이터베이스에 익명으로 저장됩니다. 찬성하시나요?",
+                optA: "사회적 안전 우선 (찬성)",
+                optB: "개인 사생활 우선 (반대)"
+            },
+            {
+                title: "희소 의료 자원 배분",
+                desc: "단 하나의 장기 이식이 필요한 두 환자가 있습니다. 인류에 큰 업적을 남긴 80세 노인과 평범한 10세 어린이 중 AI는 생존 기대 연수가 더 긴 어린이에게 우선권을 주어야 할까요, 과거 기여도가 높은 노인에게 주어야 할까요?",
+                optA: "생존 기대 연수 기준 (어린이)",
+                optB: "사회적 기여도 기준 (노인)"
+            },
+            {
+                title: "AI 생성 창작물의 저작권",
+                desc: "인간의 수만 장 그림을 학습한 AI가 그린 그림이 세계 미술 대회에서 1위를 했습니다. 이것을 인간의 노력과 동등한 예술로 인정하여 상금과 저작권을 부여해야 할까요, 아니면 단순한 데이터 조합으로 무효화해야 할까요?",
+                optA: "예술적 실체 중시 (인정)",
+                optB: "인간의 창작 과정 중시 (무효)"
+            },
+            {
+                title: "알고리즘에 의한 해고 결정",
+                desc: "기업이 경영난으로 인해 직원의 20%를 해고해야 합니다. AI는 오직 성과 데이터만을 분석하여 해고 대상을 선정합니다. 여기에는 개인의 가정 사정이나 충성심은 고려되지 않습니다. 이 공정한 데이터 기반 해고 시스템에 찬성하십니까?",
+                optA: "객관적 효율성 우선 (찬성)",
+                optB: "인간적 정서 고려 우선 (반대)"
+            }
         ];
 
+        let state = { userData: {}, answers: [], reasons: [], currentIdx: 0, selectedChoice: null, dbData: [], charts: [] };
+
         function navigateTo(id) {
-            document.querySelectorAll('section').forEach(s => s.classList.add('hidden-section'));
-            document.getElementById(id).classList.remove('hidden-section');
+            document.querySelectorAll('section').forEach(s => s.classList.replace('visible-section', 'hidden-section'));
+            const target = document.getElementById(id);
+            target.classList.replace('hidden-section', 'visible-section');
         }
 
         function selectDemo(type, val, btn) {
@@ -88,10 +194,8 @@
         function startDilemma() {
             state.userData.age = document.getElementById('age-group').value;
             state.userData.affi = document.getElementById('affiliation').value;
-            
-            // 모든 항목 선택 여부 확인
             if (!state.userData.gender || !state.userData.age || !state.userData.affi) {
-                alert("성별, 연령대, 학교급을 모두 선택해 주세요!");
+                alert("통계 정확도를 위해 모든 그룹 정보를 선택해 주세요!");
                 return;
             }
             renderQuestion();
@@ -99,34 +203,113 @@
         }
 
         function renderQuestion() {
-            const q = questions[state.currentIdx];
-            document.getElementById('d-title').innerText = q.title;
-            document.getElementById('d-desc').innerText = q.desc;
-            document.getElementById('btn-a').innerText = q.optA;
-            document.getElementById('btn-b').innerText = q.optB;
-            document.getElementById('btn-a').classList.remove('option-selected');
-            document.getElementById('btn-b').classList.remove('option-selected');
-            document.getElementById('next-btn').disabled = true;
-            document.getElementById('next-btn').classList.add('opacity-50');
+            const q = dilemmas[state.currentIdx];
+            document.getElementById('q-count').innerText = `Question ${state.currentIdx + 1} / 5`;
+            document.getElementById('progress-bar').style.width = ((state.currentIdx + 1) / 5) * 100 + "%";
+            document.getElementById('dilemma-title').innerText = q.title;
+            document.getElementById('dilemma-desc').innerText = q.desc;
+            document.getElementById('text-opt-a').innerText = q.optA;
+            document.getElementById('text-opt-b').innerText = q.optB;
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('option-selected'));
+            document.getElementById('reasoning').value = '';
+            state.selectedChoice = null;
+            updateNextBtn();
         }
 
         function selectOption(c) {
             state.selectedChoice = c;
-            document.getElementById('btn-a').classList.toggle('option-selected', c==='A');
-            document.getElementById('btn-b').classList.toggle('option-selected', c==='B');
-            document.getElementById('next-btn').disabled = false;
-            document.getElementById('next-btn').classList.remove('opacity-50');
+            document.getElementById('btn-opt-a').classList.toggle('option-selected', c === 'A');
+            document.getElementById('btn-opt-b').classList.toggle('option-selected', c === 'B');
+            updateNextBtn();
         }
 
-        function nextQuestion() {
+        // 입력 변화 감지하여 버튼 활성화
+        document.getElementById('reasoning').addEventListener('input', updateNextBtn);
+
+        function updateNextBtn() {
+            const nb = document.getElementById('next-btn');
+            const reason = document.getElementById('reasoning').value.trim();
+            if (state.selectedChoice && reason.length > 2) {
+                nb.disabled = false;
+                nb.classList.replace('bg-slate-700', 'bg-violet-600');
+                nb.classList.replace('text-slate-400', 'text-white');
+                nb.innerText = (state.currentIdx === 4) ? "분석 결과 확인" : "다음 질문으로";
+            } else {
+                nb.disabled = true;
+                nb.classList.replace('bg-violet-600', 'bg-slate-700');
+                nb.classList.replace('text-white', 'text-slate-400');
+                nb.innerText = "답변과 이유를 입력해 주세요";
+            }
+        }
+
+        async function nextQuestion() {
             state.answers.push(state.selectedChoice);
-            if(state.currentIdx < questions.length - 1) {
+            state.reasons.push(document.getElementById('reasoning').value);
+            
+            if (state.currentIdx < 4) {
                 state.currentIdx++;
                 renderQuestion();
             } else {
-                alert("모든 테스트가 완료되었습니다! (DB 연동 시 통계 화면으로 이동)");
-                location.reload();
+                await saveToDB();
+                await showResults();
             }
+        }
+
+        async function saveToDB() {
+            if (!supabaseClient) return;
+            await supabaseClient.from('ai_responses').insert([{
+                gender: state.userData.gender,
+                age_group: state.userData.age,
+                affiliation: state.userData.affi,
+                answers: state.answers,
+                reasons: state.reasons
+            }]);
+        }
+
+        async function showResults() {
+            navigateTo('screen-result');
+            if (!supabaseClient) { alert("Supabase 설정이 안 되어 있어 샘플 통계를 보여줍니다."); return; }
+            const { data } = await supabaseClient.from('ai_responses').select('*');
+            state.dbData = data;
+            initCharts();
+            applyFilters();
+        }
+
+        function initCharts() {
+            const container = document.getElementById('stats-container');
+            container.innerHTML = '';
+            state.charts = [];
+            dilemmas.forEach((d, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/50 p-6 rounded-2xl border border-slate-700 shadow-xl";
+                card.innerHTML = `<h3 class='font-bold text-violet-300 mb-4 text-sm'>${idx+1}. ${d.title}</h3><div class='h-48'><canvas id='chart-${idx}'></canvas></div>`;
+                container.appendChild(card);
+                const ctx = document.getElementById(`chart-${idx}`).getContext('2d');
+                state.charts.push(new Chart(ctx, {
+                    type: 'doughnut',
+                    data: { labels: [d.optA, d.optB], datasets: [{ data: [50, 50], backgroundColor: ['#8b5cf6', '#10b981'], borderWidth: 0 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 10 } } } }, cutout: '65%' }
+                }));
+            });
+        }
+
+        function applyFilters() {
+            const fg = document.getElementById('filter-gender').value;
+            const fa = document.getElementById('filter-age').value;
+            const faf = document.getElementById('filter-affi').value;
+
+            const filtered = state.dbData.filter(row => {
+                return (fg === 'all' || row.gender === fg) &&
+                       (fa === 'all' || row.age_group === fa) &&
+                       (faf === 'all' || row.affiliation === faf);
+            });
+
+            dilemmas.forEach((_, idx) => {
+                let counts = [0, 0];
+                filtered.forEach(row => { if (row.answers[idx] === 'A') counts[0]++; else counts[1]++; });
+                state.charts[idx].data.datasets[0].data = counts;
+                state.charts[idx].update();
+            });
         }
     </script>
 </body>
