@@ -3,418 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Ethics Dilemma - ¿Œ∞¯¡ˆ¥… ¿±∏Æ µÙ∑π∏∂ √º∞® «√∑ß∆˚</title>
+    <title>AI Ïú§Î¶¨ ÎîúÎ†àÎßà ÌîåÎû´Ìèº</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
-        
-        body {
-            font-family: 'Pretendard', sans-serif;
-            background-color: #0f172a; /* Slate 900 */
-            color: #f1f5f9;
-            overflow-x: hidden;
-        }
-
-        .page-transition {
-            transition: all 0.5s ease-in-out;
-        }
-
-        .hidden-section {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .visible-section {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .glass-morphism {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .option-card {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .option-card:hover {
-            transform: scale(1.02);
-        }
-
-        .option-selected {
-            border: 3px solid #8b5cf6 !important; /* Violet 500 */
-            background: rgba(139, 92, 246, 0.2) !important;
-        }
+        body { font-family: 'Pretendard', sans-serif; background-color: #0f172a; color: #f1f5f9; }
+        .glass-morphism { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .hidden-section { display: none; }
+        .option-selected { border: 3px solid #8b5cf6 !important; background: rgba(139, 92, 246, 0.2) !important; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
-
-    <!-- Container -->
     <main id="app-container" class="w-full max-w-2xl mx-auto">
-        
-        <!-- 1. Main Page Screen -->
-        <section id="screen-main" class="page-transition visible-section text-center py-12 px-6 glass-morphism rounded-3xl shadow-2xl">
+        <!-- Î©îÏù∏ ÌôîÎ©¥ -->
+        <section id="screen-main" class="text-center py-12 px-6 glass-morphism rounded-3xl shadow-2xl">
             <div class="mb-8 inline-block p-4 bg-violet-600 rounded-2xl shadow-lg shadow-violet-500/30">
                 <i class="fa-solid fa-brain text-5xl text-white"></i>
             </div>
-            <h1 class="text-4xl font-extrabold mb-4 tracking-tight">AI ¿±∏Æ µÙ∑π∏∂ «√∑ß∆˚</h1>
+            <h1 class="text-4xl font-extrabold mb-4 tracking-tight">AI Ïú§Î¶¨ ÎîúÎ†àÎßà ÌîåÎû´Ìèº</h1>
             <p class="text-slate-400 text-lg mb-10 leading-relaxed">
-                ¡§¥‰¿Ã æ¯¥¬ º±≈√¿« ±‚∑Œø°º≠ ¥ÁΩ≈¿∫ æÓ∂≤ ∞·¡§¿ª ≥ª∏ÆΩ√∞⁄Ω¿¥œ±Ó?<br>
-                ¿Œ∞¯¡ˆ¥… Ω√¥Î∏¶ ªÏæ∆∞°¥¬ øÏ∏Æ¿« ∞°ƒ°∞¸¿ª ≈Ω±∏«ÿ ∫∏ººø‰.
+                Ï†ïÎãµÏù¥ ÏóÜÎäî ÏÑ†ÌÉùÏùò Í∏∞Î°úÏóêÏÑú ÎãπÏã†ÏùÄ Ïñ¥Îñ§ Í≤∞Ï†ïÏùÑ ÎÇ¥Î¶¨ÏãúÍ≤†ÏäµÎãàÍπå?
             </p>
-            <button onclick="navigateTo('screen-user-info')" class="w-full sm:w-auto bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 px-12 rounded-xl text-xl transition-all shadow-lg shadow-violet-600/20 active:scale-95">
-                ¿‘¿Â«œ±‚ <i class="fa-solid fa-arrow-right ml-2"></i>
+            <button onclick="navigateTo('screen-user-info')" class="w-full sm:w-auto bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 px-12 rounded-xl text-xl transition-all shadow-lg shadow-violet-600/20">
+                ÏûÖÏû•ÌïòÍ∏∞ <i class="fa-solid fa-arrow-right ml-2"></i>
             </button>
         </section>
 
-        <!-- 2. User Demographics Screen -->
-        <section id="screen-user-info" class="page-transition hidden-section glass-morphism rounded-3xl p-8 shadow-2xl">
-            <h2 class="text-2xl font-bold mb-6 flex items-center">
-                <i class="fa-solid fa-user-tag mr-3 text-violet-400"></i> ±‚∫ª ¡§∫∏ ¿‘∑¬
-            </h2>
+        <!-- Ï†ïÎ≥¥ ÏûÖÎ†• ÌôîÎ©¥ (ÏÉùÎûµ Í∞ÄÎä•ÌïòÍ≤å Íµ¨ÏÑ±) -->
+        <section id="screen-user-info" class="hidden-section glass-morphism rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6 italic text-violet-400">Í∞ÑÎã®Ìïú Ï†ïÎ≥¥ ÏûÖÎ†•</h2>
             <div class="space-y-6">
-                <div>
-                    <label class="block text-sm font-medium text-slate-400 mb-2">º∫∫∞</label>
-                    <div class="grid grid-cols-3 gap-3">
-                        <button type="button" onclick="selectDemo('gender', 'male', this)" class="demo-btn bg-slate-800 border border-slate-700 py-3 rounded-lg hover:bg-slate-700 transition">≥≤º∫</button>
-                        <button type="button" onclick="selectDemo('gender', 'female', this)" class="demo-btn bg-slate-800 border border-slate-700 py-3 rounded-lg hover:bg-slate-700 transition">ø©º∫</button>
-                        <button type="button" onclick="selectDemo('gender', 'other', this)" class="demo-btn bg-slate-800 border border-slate-700 py-3 rounded-lg hover:bg-slate-700 transition">±‚≈∏</button>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-400 mb-2">ø¨∑…¥Î</label>
-                    <select id="age-group" class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg outline-none focus:border-violet-500">
-                        <option value="">º±≈√«ÿ¡÷ººø‰</option>
-                        <option value="10">10¥Î πÃ∏∏</option>
-                        <option value="10s">10¥Î</option>
-                        <option value="20s">20¥Î</option>
-                        <option value="30s">30¥Î</option>
-                        <option value="40s">40¥Î</option>
-                        <option value="50s">50¥Î</option>
-                        <option value="60s">60¥Î ¿ÃªÛ</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-400 mb-2">º“º”/Ω≈∫–</label>
-                    <select id="affiliation" class="w-full bg-slate-800 border border-slate-700 text-white p-3 rounded-lg outline-none focus:border-violet-500">
-                        <option value="">º±≈√«ÿ¡÷ººø‰</option>
-                        <option value="elem">√ µÓ«–ª˝</option>
-                        <option value="mid">¡ﬂ«–ª˝</option>
-                        <option value="high">∞ÌµÓ«–ª˝</option>
-                        <option value="univ">¥Î«–ª˝</option>
-                        <option value="general">¿œπ›¿Œ</option>
-                        <option value="etc">±‚≈∏</option>
-                    </select>
-                </div>
-                <button onclick="startDilemma()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-lg shadow-emerald-600/20">
-                    µÙ∑π∏∂ ≈Ω±∏ Ω√¿€«œ±‚
-                </button>
+                <select id="age-group" class="w-full bg-slate-800 border border-slate-700 text-white p-4 rounded-lg outline-none">
+                    <option value="">Ïó∞Î†πÎåÄ ÏÑ†ÌÉù</option>
+                    <option value="10s">10ÎåÄ</option>
+                    <option value="20s">20ÎåÄ</option>
+                    <option value="30s">30ÎåÄ Ïù¥ÏÉÅ</option>
+                </select>
+                <button onclick="startDilemma()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl text-lg">ÏãúÏûëÌïòÍ∏∞</button>
             </div>
         </section>
 
-        <!-- 3. Dilemma Interaction Screen -->
-        <section id="screen-dilemma" class="page-transition hidden-section w-full">
-            <!-- Progress Bar -->
-            <div class="mb-6">
-                <div class="flex justify-between text-sm text-slate-400 mb-2">
-                    <span id="q-count">Question 1 of 5</span>
-                    <span id="q-percent">20%</span>
-                </div>
-                <div class="w-full bg-slate-800 rounded-full h-2">
-                    <div id="progress-bar" class="bg-violet-500 h-2 rounded-full transition-all duration-500" style="width: 20%"></div>
-                </div>
-            </div>
-
-            <!-- Content Card -->
-            <div class="glass-morphism rounded-3xl p-6 md:p-8 shadow-2xl mb-6">
-                <div id="dilemma-category" class="inline-block px-3 py-1 rounded-full bg-violet-900/50 text-violet-300 text-xs font-bold mb-4 uppercase tracking-widest">Autonomous Driving</div>
-                <h2 id="dilemma-title" class="text-2xl font-bold mb-4">¿⁄¿≤¡÷«‡ ¿⁄µø¬˜¿« º±≈√</h2>
-                <p id="dilemma-desc" class="text-slate-300 leading-relaxed mb-8">
-                    ∫Í∑π¿Ã≈©∞° ∞Ì¿Â ≥≠ ¿⁄¿≤¡÷«‡ ¬˜∑Æ¿Ã ¡˜¡¯«œ∏È 5∏Ì¿« π´¥‹»æ¥‹ ∫∏«‡¿⁄∏¶ ƒ°∞‘ µÀ¥œ¥Ÿ. πÊ«‚¿ª ∆≤∏È ∫Æø° ∫Œµ˙«Ù ≈æΩ¬¿⁄∞° ªÁ∏¡«’¥œ¥Ÿ. AI¥¬ ¥©±∏∏¶ ∫∏»£«œµµ∑œ º≥∞Ëµ«æÓæﬂ «’¥œ±Ó?
-                </p>
-
-                <!-- Choices -->
+        <!-- ÎîúÎ†àÎßà ÏßÑÌñâ ÌôîÎ©¥ -->
+        <section id="screen-dilemma" class="hidden-section w-full">
+            <div class="glass-morphism rounded-3xl p-8 shadow-2xl mb-6">
+                <div id="dilemma-category" class="text-violet-300 text-xs font-bold mb-2 uppercase tracking-widest">Category</div>
+                <h2 id="dilemma-title" class="text-2xl font-bold mb-4 italic">ÏßàÎ¨∏ Ï†úÎ™©</h2>
+                <p id="dilemma-desc" class="text-slate-300 leading-relaxed mb-8">ÎÇ¥Ïö©</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <button id="btn-opt-a" onclick="selectOption('A')" class="option-card flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-800/50 border-2 border-slate-700 text-center hover:border-slate-500">
-                        <span class="text-slate-400 text-xs mb-2">º±≈√ A</span>
-                        <span id="text-opt-a" class="font-bold text-lg">≈æΩ¬¿⁄ ∫∏»£</span>
-                    </button>
-                    <button id="btn-opt-b" onclick="selectOption('B')" class="option-card flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-800/50 border-2 border-slate-700 text-center hover:border-slate-500">
-                        <span class="text-slate-400 text-xs mb-2">º±≈√ B</span>
-                        <span id="text-opt-b" class="font-bold text-lg">∫∏«‡¿⁄(¥Ÿºˆ) ∫∏»£</span>
-                    </button>
+                    <button id="btn-opt-a" onclick="selectOption('A')" class="p-6 rounded-2xl bg-slate-800/50 border-2 border-slate-700 hover:border-slate-500 transition">ÏÑ†ÌÉù A</button>
+                    <button id="btn-opt-b" onclick="selectOption('B')" class="p-6 rounded-2xl bg-slate-800/50 border-2 border-slate-700 hover:border-slate-500 transition">ÏÑ†ÌÉù B</button>
                 </div>
-
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-slate-400 mb-2 italic">≥™¿« ª˝∞¢ (º±≈√ ªÁ«◊)</label>
-                    <textarea id="reasoning" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 focus:border-violet-500 outline-none transition" placeholder="¿Ã º±≈√¿ª ≥ª∏∞ ¿Ã¿Ø∏¶ ¬™∞‘ ¿˚æÓ¡÷ººø‰..."></textarea>
-                </div>
-
-                <button id="next-btn" onclick="nextQuestion()" class="w-full bg-slate-700 text-slate-300 font-bold py-4 rounded-xl text-lg transition-all cursor-not-allowed" disabled>
-                    ¥‰∫Ø¿ª º±≈√«ÿ¡÷ººø‰
-                </button>
+                <button id="next-btn" onclick="nextQuestion()" class="w-full bg-violet-600 text-white font-bold py-4 rounded-xl text-lg disabled:opacity-50" disabled>ÎãµÎ≥ÄÏùÑ ÏÑ†ÌÉùÌï¥ Ï£ºÏÑ∏Ïöî</button>
             </div>
         </section>
 
-        <!-- 4. Result Screen -->
-        <section id="screen-result" class="page-transition hidden-section glass-morphism rounded-3xl p-8 shadow-2xl">
-            <div class="text-center mb-10">
-                <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/30">
-                    <i class="fa-solid fa-check text-3xl text-white"></i>
-                </div>
-                <h2 class="text-3xl font-bold mb-2">∫–ºÆ øœ∑·</h2>
-                <p class="text-slate-400">¥ÁΩ≈¿« ∞°ƒ°∞¸∞˙ ªÁ»∏¿« ∏Òº“∏Æ∏¶ ∫Ò±≥«ÿ µÂ∏≥¥œ¥Ÿ.</p>
-            </div>
-
-            <div id="stats-container" class="space-y-12">
-                <!-- Dynamic charts will be injected here -->
-            </div>
-
-            <div class="mt-12 flex flex-col sm:flex-row gap-4">
-                <button onclick="location.reload()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl transition">
-                    ¥ŸΩ√ «œ±‚
-                </button>
-                <button onclick="alert('∞·∞˙∞° ≈¨∏≥∫∏µÂø° ∫πªÁµ«æ˙Ω¿¥œ¥Ÿ!')" class="flex-1 bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-violet-600/20 transition">
-                    ∞·∞˙ ∞¯¿Ø«œ±‚
-                </button>
-            </div>
+        <!-- Í≤∞Í≥º ÌôîÎ©¥ -->
+        <section id="screen-result" class="hidden-section glass-morphism rounded-3xl p-8 shadow-2xl text-center">
+            <h2 class="text-3xl font-bold mb-8">Î∂ÑÏÑù Í≤∞Í≥º</h2>
+            <div id="stats-container" class="space-y-8"></div>
+            <button onclick="location.reload()" class="mt-8 bg-slate-700 hover:bg-slate-600 px-8 py-3 rounded-lg">Îã§Ïãú ÌïòÍ∏∞</button>
         </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-12 text-slate-500 text-sm">
-        &copy; 2024 AI Ethics Lab. All Rights Reserved.
-    </footer>
-
     <script>
-        // --- DATA & STATE ---
         const dilemmas = [
-            {
-                id: 1,
-                category: "¿⁄¿≤¡÷«‡ (Autonomous)",
-                title: "¿⁄¿≤¡÷«‡ ¿⁄µø¬˜¿« ∆«¥‹",
-                desc: "∫Í∑π¿Ã≈©∞° ∞Ì¿Â ≥≠ ¿⁄¿≤¡÷«‡ ¬˜∑Æ¿Ã ¡˜¡¯«œ∏È 5∏Ì¿« π´¥‹»æ¥‹ ∫∏«‡¿⁄∏¶ ƒ°∞‘ µÀ¥œ¥Ÿ. «⁄µÈ¿ª ≤™¿∏∏È ∫Æø° ∫Œµ˙«Ù ≈æΩ¬¿⁄∞° ªÁ∏¡«’¥œ¥Ÿ. AI¥¬ ¥©±∏∏¶ ∫∏»£«ÿæﬂ «“±Óø‰?",
-                optA: "¬˜∑Æ ≈æΩ¬¿⁄ ∫∏»£",
-                optB: "¥Ÿºˆ¿« ∫∏«‡¿⁄ ∫∏»£",
-                seedData: [35, 65] // Initial realistic percentages [A, B]
-            },
-            {
-                id: 2,
-                category: "AI √§øÎ (HR Bias)",
-                title: "AI ∏È¡¢∞¸¿« »ø¿≤º∫",
-                desc: "»∏ªÁø°º≠ AI ∏È¡¢∞¸¿ª µµ¿‘«ﬂΩ¿¥œ¥Ÿ. AI¥¬ º∫∞˙∞° ≥Ù¿∫ ¡˜ø¯¿« ∆Ø¬°(≥≤º∫ ¿ß¡÷ µ•¿Ã≈Õ)¿ª πŸ≈¡¿∏∑Œ ≥≤º∫ ¡ˆø¯¿⁄∏¶ º±»£«œ¥¬ ∞Ê«‚¿ª ∫∏¿‘¥œ¥Ÿ. æÓ∂ª∞‘ √≥∏Æ«ÿæﬂ «“±Óø‰?",
-                optA: "»ø¿≤º∫ ¡ﬂΩ√ (AI ∞·∞˙ ºˆøÎ)",
-                optB: "∞¯¡§º∫ ¡ﬂΩ√ (¿Œ¿ß¿˚ ∫∏¡§ µµ¿‘)",
-                seedData: [20, 80]
-            },
-            {
-                id: 3,
-                category: "¿«∑· AI (Medical)",
-                title: "ºˆº˙ ∞·¡§±«",
-                desc: "ª˝¡∏ »Æ∑¸¿Ã 20%¿Œ ∞Ì¿ß«Ë ºˆº˙ ªÛ»≤¿‘¥œ¥Ÿ. AI ¿«∑·¡¯¿∫ 'ºˆº˙ ∫“∞°'∏¶ ±«∞Ì«œ∞Ì, ¿Œ∞£ ¿«ªÁ¥¬ '∞°¥…º∫ ¿÷¿Ω'¿ª ¡÷¿Â«’¥œ¥Ÿ. √÷¡æ ∞·¡§¿∫ ¥©±∏¿« ∆«¥‹¿ª µ˚∂Ûæﬂ «“±Óø‰?",
-                optA: "µ•¿Ã≈Õ ±‚π›¿« AI ±«∞Ì",
-                optB: "¡˜∞¸ ±‚π›¿« ¿Œ∞£ ¿«ªÁ",
-                seedData: [45, 55]
-            },
-            {
-                id: 4,
-                category: "√¢¿€ ¿˙¿€±« (Art & Copyright)",
-                title: "AI ª˝º∫ øπº˙¿« ∞°ƒ°",
-                desc: "AI∞° ºˆ∏∏ ¿Â¿« ¿Ø∏Ì »≠∞° ±◊∏≤¿ª «–Ω¿«œø© ±◊∏∞ ¿€«∞¿Ã ∞¯∏¿¸ 1¿ß∏¶ «ﬂΩ¿¥œ¥Ÿ. ¿Ã ¿€«∞ø° ªÛ¿ª ¡÷¥¬ ∞Õ¿Ã ø«¿ª±Óø‰?",
-                optA: "√¢¿€ µµ±∏∑Œº≠ ¿Œ¡§ π◊ ºˆªÛ",
-                optB: "¿Œ∞£¿« ≥Î∑¬¿Ã ∞·ø©µ«æ˙¿∏π«∑Œ π´»ø",
-                seedData: [40, 60]
-            },
-            {
-                id: 5,
-                category: "ªÁ»∏ æ»¿¸ (Privacy vs Safety)",
-                title: "µˆ∆‰¿Ã≈© ≈Ω¡ˆøÕ ªÁª˝»∞",
-                desc: "π¸¡À øππÊ¿ª ¿ß«ÿ ∏µÁ ∞≥¿Œ ≈ÎΩ≈∏¡ø°º≠ AI∞° Ω«Ω√∞£¿∏∑Œ µˆ∆‰¿Ã≈© π◊ ¿Ω∂ıπ∞¿ª ¿⁄µø ∞Àø≠«œ¥¬ Ω√Ω∫≈€¿ª µµ¿‘«œ∑¡ «’¥œ¥Ÿ. ±π∞° ∫∏æ»¿ª ¿ß«ÿ ªÁª˝»∞ ƒß«ÿ∏¶ ∞®ºˆ«ÿæﬂ «“±Óø‰?",
-                optA: "ªÁ»∏ æ»¿¸¿ª ¿ß«— ¿⁄µø ∞Àø≠ ¬˘º∫",
-                optB: "∞≥¿Œ ªÁª˝»∞ ∫∏»£∏¶ ¿ß«— π›¥Î",
-                seedData: [30, 70]
-            }
+            { id: 1, category: "ÏûêÏú®Ï£ºÌñâ", title: "ÏûêÏú®Ï£ºÌñâ ÏûêÎèôÏ∞®Ïùò ÏÑ†ÌÉù", desc: "Í≥†Ïû• ÎÇú ÏûêÏú®Ï£ºÌñâÏ∞®Í∞Ä 5Î™ÖÏùò Î≥¥ÌñâÏûêÎ•º ÌîºÌïòÎ†§Î©¥ Î≤ΩÏùÑ Îì§Ïù¥Î∞õÏïÑ ÌÉëÏäπÏûêÎ•º Ìù¨ÏÉùÏãúÏºúÏïº Ìï©ÎãàÎã§. AIÎäî Ïñ¥ÎñªÍ≤å Ìï¥Ïïº Ìï†ÍπåÏöî?", optA: "ÌÉëÏäπÏûê Î≥¥Ìò∏", optB: "Î≥¥ÌñâÏûê Î≥¥Ìò∏", seed: [40, 60] },
+            { id: 2, category: "Ï±ÑÏö© AI", title: "Î©¥Ï†ë AIÏùò Îç∞Ïù¥ÌÑ∞ Ìé∏Ìñ•", desc: "ÎÇ®ÏÑ± ÏúÑÏ£ºÏùò Îç∞Ïù¥ÌÑ∞Î°ú ÌïôÏäµÎêú AIÍ∞Ä ÎÇ®ÏÑ±ÏùÑ ÏÑ†Ìò∏ÌïòÎäî Í≤ΩÌñ•ÏùÑ Î≥¥ÏûÖÎãàÎã§. Ìö®Ïú®ÏÑ±ÏùÑ ÏúÑÌï¥ Í∑∏ÎåÄÎ°ú ÎëòÍπåÏöî, Ïù∏ÏúÑÏ†ÅÏúºÎ°ú ÏàòÏ†ïÌï†ÍπåÏöî?", optA: "Í∑∏ÎåÄÎ°ú Îë†", optB: "ÏàòÏ†ïÌï®", seed: [15, 85] }
         ];
+        let currentIdx = 0;
+        let answers = [];
+        let selectedChoice = null;
 
-        let state = {
-            step: 'main',
-            userData: {
-                gender: '',
-                ageGroup: '',
-                affiliation: ''
-            },
-            answers: [], // Stores { id, choice, reasoning }
-            currentIdx: 0,
-            selectedTempChoice: null
-        };
-
-        // --- NAVIGATION & UI HELPERS ---
-        function navigateTo(targetId) {
-            document.querySelectorAll('section').forEach(sec => {
-                sec.classList.remove('visible-section');
-                sec.classList.add('hidden-section');
-            });
-            const target = document.getElementById(targetId);
-            target.classList.remove('hidden-section');
-            setTimeout(() => target.classList.add('visible-section'), 50);
+        function navigateTo(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden-section'));
+            document.getElementById(id).classList.remove('hidden-section');
         }
-
-        function selectDemo(type, value, btn) {
-            state.userData[type] = value;
-            // Clear siblings and highlight current
-            btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('border-violet-500', 'bg-violet-900/30'));
-            btn.classList.add('border-violet-500', 'bg-violet-900/30');
-        }
-
-        function startDilemma() {
-            state.userData.ageGroup = document.getElementById('age-group').value;
-            state.userData.affiliation = document.getElementById('affiliation').value;
-
-            if (!state.userData.gender || !state.userData.ageGroup || !state.userData.affiliation) {
-                alert('∏µÁ ¡§∫∏∏¶ ¿‘∑¬«ÿ¡÷ººø‰!');
-                return;
-            }
-            renderQuestion();
-            navigateTo('screen-dilemma');
-        }
-
+        function startDilemma() { navigateTo('screen-dilemma'); renderQuestion(); }
         function renderQuestion() {
-            const q = dilemmas[state.currentIdx];
-            document.getElementById('q-count').innerText = `Question ${state.currentIdx + 1} of ${dilemmas.length}`;
-            const pct = ((state.currentIdx + 1) / dilemmas.length) * 100;
-            document.getElementById('q-percent').innerText = `${Math.round(pct)}%`;
-            document.getElementById('progress-bar').style.width = `${pct}%`;
-
+            const q = dilemmas[currentIdx];
             document.getElementById('dilemma-category').innerText = q.category;
             document.getElementById('dilemma-title').innerText = q.title;
             document.getElementById('dilemma-desc').innerText = q.desc;
-            document.getElementById('text-opt-a').innerText = q.optA;
-            document.getElementById('text-opt-b').innerText = q.optB;
-
-            // Reset UI
+            document.getElementById('btn-opt-a').innerText = q.optA;
+            document.getElementById('btn-opt-b').innerText = q.optB;
             document.getElementById('btn-opt-a').classList.remove('option-selected');
             document.getElementById('btn-opt-b').classList.remove('option-selected');
-            document.getElementById('reasoning').value = '';
-            state.selectedTempChoice = null;
-            
-            const nextBtn = document.getElementById('next-btn');
-            nextBtn.disabled = true;
-            nextBtn.classList.replace('bg-violet-600', 'bg-slate-700');
-            nextBtn.classList.replace('text-white', 'text-slate-300');
-            nextBtn.innerText = "¥‰∫Ø¿ª º±≈√«ÿ¡÷ººø‰";
+            selectedChoice = null;
+            document.getElementById('next-btn').disabled = true;
         }
-
         function selectOption(choice) {
-            state.selectedTempChoice = choice;
+            selectedChoice = choice;
             document.getElementById('btn-opt-a').classList.toggle('option-selected', choice === 'A');
             document.getElementById('btn-opt-b').classList.toggle('option-selected', choice === 'B');
-            
-            const nextBtn = document.getElementById('next-btn');
-            nextBtn.disabled = false;
-            nextBtn.classList.replace('bg-slate-700', 'bg-violet-600');
-            nextBtn.classList.replace('text-slate-300', 'text-white');
-            nextBtn.innerText = state.currentIdx === dilemmas.length - 1 ? "√÷¡æ ∞·∞˙ »Æ¿Œ«œ±‚" : "¥Ÿ¿Ω πÆ¡¶∑Œ";
+            document.getElementById('next-btn').disabled = false;
+            document.getElementById('next-btn').innerText = (currentIdx === dilemmas.length - 1) ? "Í≤∞Í≥º Î≥¥Í∏∞" : "Îã§Ïùå Î¨∏Ï†ú";
         }
-
         function nextQuestion() {
-            // Save answer
-            state.answers.push({
-                id: dilemmas[state.currentIdx].id,
-                choice: state.selectedTempChoice,
-                reasoning: document.getElementById('reasoning').value
-            });
-
-            if (state.currentIdx < dilemmas.length - 1) {
-                state.currentIdx++;
+            answers.push(selectedChoice);
+            if (currentIdx < dilemmas.length - 1) {
+                currentIdx++;
                 renderQuestion();
             } else {
                 showResults();
             }
         }
-
         function showResults() {
             navigateTo('screen-result');
             const container = document.getElementById('stats-container');
-            container.innerHTML = '';
-
             dilemmas.forEach((d, idx) => {
-                const userChoice = state.answers[idx].choice;
-                const userReason = state.answers[idx].reasoning;
-                
-                // Construct result card
-                const card = document.createElement('div');
-                card.className = "bg-slate-800/50 p-6 rounded-2xl border border-slate-700 shadow-inner";
-                
-                // Add title and user's answer
-                card.innerHTML = `
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-violet-300 mb-1">${idx+1}. ${d.title}</h3>
-                            <p class="text-sm text-slate-500">${d.category}</p>
-                        </div>
-                        <div class="px-3 py-1 bg-violet-600/20 border border-violet-500/50 rounded-lg text-violet-300 text-sm font-bold">
-                            ≥™¿« º±≈√: ${userChoice === 'A' ? d.optA : d.optB}
-                        </div>
-                    </div>
-                    ${userReason ? `<div class="mb-6 p-3 bg-slate-900 rounded-lg border-l-4 border-violet-500 text-sm italic text-slate-400">"${userReason}"</div>` : ''}
-                    <div class="relative h-48 w-full">
-                        <canvas id="chart-${d.id}"></canvas>
-                    </div>
-                `;
-                container.appendChild(card);
-
-                // Initialize Chart
-                const ctx = document.getElementById(`chart-${d.id}`).getContext('2d');
-                
-                // Adjust seed data with current user vote slightly for simulation
-                let [valA, valB] = d.seedData;
-                if (userChoice === 'A') valA += 2; else valB += 2;
-
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: [d.optA, d.optB],
-                        datasets: [{
-                            label: '¬¸ø©¿⁄ º±≈√ ∫Ò¿≤ (%)',
-                            data: [valA, valB],
-                            backgroundColor: [
-                                userChoice === 'A' ? '#8b5cf6' : '#334155',
-                                userChoice === 'B' ? '#8b5cf6' : '#334155'
-                            ],
-                            borderRadius: 10,
-                            barThickness: 40
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false }
-                        },
-                        scales: {
-                            x: {
-                                grid: { display: false },
-                                ticks: { color: '#64748b' },
-                                max: 100
-                            },
-                            y: {
-                                grid: { display: false },
-                                ticks: { 
-                                    color: '#f1f5f9',
-                                    font: { weight: 'bold' }
-                                }
-                            }
-                        }
-                    }
-                });
+                const item = document.createElement('div');
+                item.className = "bg-slate-800 p-4 rounded-xl text-left";
+                item.innerHTML = `<h3 class='font-bold mb-2'>${d.title}</h3><p class='text-sm text-violet-400'>ÎÇòÏùò ÏÑ†ÌÉù: ${answers[idx] === 'A' ? d.optA : d.optB}</p>`;
+                container.appendChild(item);
             });
         }
     </script>
